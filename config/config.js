@@ -32,7 +32,7 @@ const config = convict({
   sp_port: {
     doc: 'The SP server port to bind.',
     format: 'port',
-    default: 8000,
+    default: 8002,
     env: 'SP_PORT',
   },
   api: {
@@ -49,7 +49,7 @@ const config = convict({
     },
     legacyToken: {
       doc: 'Firebase legacy token, e.g. abcdefg1234567890abcdefg1234567890',
-      default: '',
+      default: 'abcdefg1234567890abcdefg1234567890',
       env: 'FIREBASE_LEGACY_TOKEN',
     },
     projectId: {
@@ -412,7 +412,8 @@ config.version = require('../version.json').version;
 const pgUrl = url.parse(config.get('postgres_connection_string'));
 console.log(`CONFIG: version:${config.version}`);
 console.log(`CONFIG: env:${config.get('env')}`);
-console.log(`CONFIG: firebase:${url.parse(config.get('firebase.url')).host}`);
+console.log(`CONFIG: firebase:${config.get('firebase.url')}`);
+console.log(`CONFIG: api:${config.get('api')}`);
 console.log(`CONFIG: postgres:${pgUrl.host}${pgUrl.pathname}`);
 console.log(`CONFIG: redis:${config.get('redis.host')}`);
 

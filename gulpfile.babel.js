@@ -187,9 +187,6 @@ function validateFirebase(cb) {
   if (process.env.FIREBASE_URL === undefined) {
     return cb(new Error('FIREBASE_URL must be set'));
   }
-  if (!process.env.FIREBASE_URL.endsWith('firebaseio.com/')) {
-    return cb(new Error('FIREBASE_URL must end in firebaseio.com/'));
-  }
   return cb();
 }
 

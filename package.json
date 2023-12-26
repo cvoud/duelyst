@@ -169,6 +169,7 @@
     "api": "node ./bin/api",
     "game": "node ./bin/game",
     "sp": "node ./bin/single_player",
+    "start:web": "cd ./dist/src && ws && start http://DESKTOP-F1VMGD0:8000",
     "worker": "node ./bin/worker",
     "worker-ui": "node ./bin/workerui",
     "build": "node --max_old_space_size=2048 --stack-size=100000 node_modules/gulp/bin/gulp.js build",
