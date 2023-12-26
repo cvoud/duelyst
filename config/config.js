@@ -44,12 +44,12 @@ const config = convict({
     url: {
       doc: 'Firebase URL, e.g. https://my-duelyst-project-12345.firebaseio.com/',
       // format: "url",
-      default: '',
+      default: 'https://duelyst-dev-abf1f-default-rtdb.firebaseio.com/',
       env: 'FIREBASE_URL',
     },
     legacyToken: {
       doc: 'Firebase legacy token, e.g. abcdefg1234567890abcdefg1234567890',
-      default: 'abcdefg1234567890abcdefg1234567890',
+      default: 'zbDIelsj2iI5biaacsSov7WXwDXMywEMwHdkfcSw',
       env: 'FIREBASE_LEGACY_TOKEN',
     },
     projectId: {
@@ -286,7 +286,7 @@ const config = convict({
   },
   postgres_connection_string: {
     doc: 'Postgres connection string.',
-    default: 'pg://duelyst:duelyst@127.0.0.1/duelyst',
+    default: 'postgres://postgres:admin@0.0.0.0:5432/postgres',
     env: 'POSTGRES_CONNECTION',
   },
   allCardsAvailable: {
@@ -372,13 +372,14 @@ const config = convict({
 try {
   // load environment dependent configuration
   const configFile = path.join(__dirname, `../config/${config.get('env')}.json`);
+  console.log("Attempting to load configuration file", configFile);
   config.loadFile(configFile);
 
   // Example loading multiple files
   // CONFIG_FILES=/path/to/production.json,/path/to/secrets.json,/path/to/sitespecific.json
   // config.loadFile(process.env.CONFIG_FILES.split(','));
 } catch (error) {
-  // console.log("No configuration files found. Using default config.");
+  console.log("No configuration files found. Using default config.", error);
 }
 
 // validates configuration against formats specified in schema above

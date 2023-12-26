@@ -8,7 +8,8 @@ url = require 'url'
 
 Logger = require '../../app/common/logger.coffee'
 config = require '../../config/config.js'
-defaultFirebaseUrl = config.get('firebase.url')
+
+defaultFirebaseUrl = "https://duelyst-dev-abf1f-default-rtdb.firebaseio.com/"
 firebaseLoggingEnabled = config.get('firebase.loggingEnabled')
 
 # Read service account credentials.
@@ -69,7 +70,7 @@ class DuelystFirebaseModule
 
   # Opens new connections
   constructor: ({@key, @firebaseUrl}) ->
-    Logger.module('Firebase').log "connect() -> new app connection with db #{@key}"
+    Logger.module('Firebase').log "connect() -> new app connection with db #{@key} and firebaseUrl #{@firebaseUrl}"
     @promise = new Promise (resolve, reject) =>
       # Validate configuration before attempting to connect.
       if @firebaseUrl == ''
